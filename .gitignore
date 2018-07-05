@@ -1,0 +1,15 @@
+.preview*
+.metadata*
+*.html
+bin*
+.gradle
+RemoteSystems*
+*.jar
+Servers*
+*.class
+
+.DS_Store
+
+**/.idea
+**.iml
+**/target
