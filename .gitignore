@@ -13,3 +13,4 @@ Servers*
 **/.idea
 **.iml
 **/target
+/.recommenders/
