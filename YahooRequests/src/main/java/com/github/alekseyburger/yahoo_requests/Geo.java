@@ -10,41 +10,41 @@ import java.net.URLConnection;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class Weather {
-	
+public class Geo {
+	private String city;
+	private String country;
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-	private String geo_list = null;
 	
-	public Weather(int geo) {
-        // Convert non-alfa-digit to %hex 
-        UrlString u = new UrlString("(" + Integer.toString(geo) + ")");
-        geo_list = u.get();
+	public Geo(String icity) {
+		city = icity;
 	}
 	
-	class WeatherResponseHead {
-		
-		class Query {
-			public Integer count;
-			public String  created;
-			public String  lang;
-		}
-		
-		public Query query;
+	public Geo(String icity, String icountry) {
+		city = icity;
+		country = icountry;
 	}
 	
-	public WeatherResponse request() {
+	public GeoResponse request() {
 
 	    String inpString = null;
         URL url = null;
         URLConnection urlConn = null;
         
-        // construct the url with request
-        String link = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20" +
-        		geo_list + "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+        // Join city name and country if defined
+        String place_for_request = city;
+        if (country != null) {
+        	place_for_request += "," + country;
+        }
+        // Convert non-alfa-digit to %hex 
+        UrlString u = new UrlString(place_for_request);
+        place_for_request = u.get();
         
-        // launch the request
+        // build link url
+        String link = "https://query.yahooapis.com/v1/public/yql?q=select%20woeid%20from%20geo.places%20where%20text%3D%22" + 
+                     place_for_request + "%22&format=json";
+
         try{
-            url  = new URL(link);
+            url  = new URL(link);              
             urlConn = url.openConnection();
         } catch(IOException ioe){
  	        ioe.printStackTrace();
@@ -54,9 +54,9 @@ public class Weather {
         	InputStreamReader inStream =   new InputStreamReader(urlConn.getInputStream());
  	        BufferedReader buff  = new BufferedReader(inStream);)
         {
-            // get the response from the Yahoo
-            inpString = buff.readLine();  
-
+            // read the response
+            inpString = buff.readLine();
+            
        } catch(MalformedURLException e){
            System.out.println("Please check the spelling of " 
                            + "the URL: " + e.toString() );
@@ -64,14 +64,12 @@ public class Weather {
            System.out.println("Can't read from the Internet: " + 
                                         e1.toString() ); 
        }
-       
-       // if it got the information - parse Json
+       // parse Json if it got the response 
        if (inpString != null) {
-           WeatherResponse  resp = GSON.fromJson(inpString, WeatherResponse.class);
+           GeoResponse  resp = GSON.fromJson(inpString, GeoResponse.class);
            return resp;
        } else {
     	   return null;
        }
     }
 }
-
