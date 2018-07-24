@@ -38,6 +38,11 @@
         <artifactId>protobuf-java</artifactId>
         <version>3.6.0</version>
     </dependency>
-    
+
+    <dependency>
+    	<groupId>com.github.alekseyburger</groupId>
+    	<artifactId>yahoo_requests</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 </project>

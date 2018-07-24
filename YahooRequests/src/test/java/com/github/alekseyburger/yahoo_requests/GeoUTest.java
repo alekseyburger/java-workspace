@@ -17,7 +17,6 @@ public class GeoUTest {
 		Geo gsp = new Geo("Sankt Peterburg");
 		rsp = gsp.request();
 		rsp.Debug();
-		fail("Not yet implemented");
 	}
 
 }
