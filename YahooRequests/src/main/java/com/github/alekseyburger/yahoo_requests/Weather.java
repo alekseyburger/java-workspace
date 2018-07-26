@@ -13,15 +13,16 @@ import com.google.gson.GsonBuilder;
 public class Weather {
 	
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-	private String geo_list = null;
+	private String geo_list = null; // geo-position like (<id>)
 	
 	public Weather(int geo) {
-        // Convert non-alfa-digit to %hex 
+        // Build geo-position string. convert non-alfa-digit to %hex 
         UrlString u = new UrlString("(" + Integer.toString(geo) + ")");
+        // save result as element
         geo_list = u.get();
 	}
 	
-	class WeatherResponseHead {
+	/*class WeatherResponseHead {
 		
 		class Query {
 			public Integer count;
@@ -30,7 +31,7 @@ public class Weather {
 		}
 		
 		public Query query;
-	}
+	}*/
 	
 	public WeatherResponse request() {
 
@@ -51,8 +52,8 @@ public class Weather {
         }
     
         try(
-        	InputStreamReader inStream =   new InputStreamReader(urlConn.getInputStream());
- 	        BufferedReader buff  = new BufferedReader(inStream);)
+        	InputStreamReader inStream = new InputStreamReader(urlConn.getInputStream());
+ 	        BufferedReader buff = new BufferedReader(inStream);)
         {
             // get the response from the Yahoo
             inpString = buff.readLine();  

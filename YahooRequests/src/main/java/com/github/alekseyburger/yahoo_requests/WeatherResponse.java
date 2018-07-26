@@ -109,6 +109,15 @@ public class WeatherResponse {
     	System.out.println("Title: " + query.results.channel.title);
     	System.out.println("Description: " + query.results.channel.item.description );
     	System.out.println("Guig: " + query.results.channel.item.guid.isPermaLink);
+    	
+    	System.out.println("\n\n\n");
+    	
+    	//System.out.println(query.results.channel.location);
+    	
+    	System.out.println("Atmosphere: " + query.results.channel.atmosphere.humidity + " \n" +
+    		               query.results.channel.atmosphere.pressure + " \n" +
+    	                   query.results.channel.atmosphere.rising  + " \n" +
+    		               query.results.channel.atmosphere.visibility);
     	System.out.println("Forecast: code: " + query.results.channel.item.forecast[0].code
     			                      + " date: " + query.results.channel.item.forecast[0].date
     			                      + " day: " + query.results.channel.item.forecast[0].day

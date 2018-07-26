@@ -26,7 +26,7 @@ public class YahooMonitor {
 	    	Weather w = new Weather(gresp.query.results.place[0].woeid);
 	    	WeatherResponse wresp =  w.request();
 	    	if (wresp != null) {
-	    		weather_dao.Add(wresp);
+	    		weather_dao.Add(city, wresp);
 	    	}
 	    }
 	}
