@@ -10,6 +10,10 @@ import com.github.alekseyburger.yahoo_requests.WeatherResponse;
 /*
 mysql -u root -p
 GRANT ALL PRIVILEGES ON *.* TO 'weather'@'localhost' IDENTIFIED BY 'Weather@22';
+// for 8
+ CREATE USER 'weather'@'localhost' IDENTIFIED BY 'Weather@22' PASSWORD EXPIRED NEVER;
+ GRANT ALL PRIVILEGES ON *.* TO 'weather'@'localhost';
+//
 CREATE DATABASE weather;
 use weather;
 CREATE TABLE weather ( id smallint unsigned not null auto_increment,

@@ -49,9 +49,10 @@ public class Weather {
             urlConn = url.openConnection();
         } catch(IOException ioe){
  	        ioe.printStackTrace();
+ 	        return null;
         }
     
-        try(
+        try (
         	InputStreamReader inStream = new InputStreamReader(urlConn.getInputStream());
  	        BufferedReader buff = new BufferedReader(inStream);)
         {
@@ -65,7 +66,7 @@ public class Weather {
            System.out.println("Can't read from the Internet: " + 
                                         e1.toString() ); 
        }
-       
+
        // if it got the information - parse Json
        if (inpString != null) {
            WeatherResponse  resp = GSON.fromJson(inpString, WeatherResponse.class);

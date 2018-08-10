@@ -14,3 +14,7 @@ Servers*
 **.iml
 **/target
 /.recommenders/
+*.prefs
+*/.classpath
+*/.project
+*/.settings/*
