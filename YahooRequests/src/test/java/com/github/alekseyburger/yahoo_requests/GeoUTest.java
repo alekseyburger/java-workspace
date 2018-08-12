@@ -10,13 +10,16 @@ public class GeoUTest {
 	public void test() {
 		Geo gta = new Geo("Tel Aviv","Israel");
 		GeoResponse rsp = gta.request();
-		rsp.Debug();
+		if (rsp!=null) {
+			rsp.Debug();
+		}
 		Geo gl = new Geo("London");
 		rsp = gl.request();
-		rsp.Debug();
+		if (rsp!=null) { rsp.Debug(); }
+		
 		Geo gsp = new Geo("Sankt Peterburg");
 		rsp = gsp.request();
-		rsp.Debug();
+		if (rsp!=null) { rsp.Debug(); }
 	}
 
 }

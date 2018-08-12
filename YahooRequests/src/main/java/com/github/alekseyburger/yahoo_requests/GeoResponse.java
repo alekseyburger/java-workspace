@@ -21,6 +21,7 @@ public class GeoResponse {
 	public Query query;
 	
 	public void Debug() {
+		
     	System.out.println("count: " + query.count);
     	System.out.println("created: " + query.created);
     	System.out.println("lang: " + query.lang);
